@@ -5,9 +5,12 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "strict": false,
+        "strictPropertyInitialization": false,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
     },
     "exclude": [
         "node_modules"
