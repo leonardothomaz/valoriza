@@ -6,6 +6,9 @@
         "rootDir": "./src",
         "strict": false,
         "strictPropertyInitialization": false,
+        "typeRoots": [
+            "./src/@types"
+        ],
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
