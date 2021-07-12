@@ -3,6 +3,10 @@ import { AuthenticateUserController } from './controllers/AuthenticateUserContro
 import { CreateComplimentController } from './controllers/CreateComplimentController';
 import { CreateTagController } from './controllers/CreateTagController';
 import { CreateUserController } from './controllers/CreateUserController';
+import { ListTagsController } from './controllers/ListTagsController';
+import { ListUserReceiveComplimentsController } from './controllers/ListUserReceiveComplimentsController';
+import { ListUsersController } from './controllers/ListUsersController';
+import { ListUserSendComplimentsController } from './controllers/ListUserSendComplimentsController';
 import { ensureAdmin } from './middlewares/ensureAdmin';
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated';
 
@@ -12,8 +16,15 @@ const createUserController = new CreateUserController();
 const createTagController = new CreateTagController();
 const createComplimentController = new CreateComplimentController();
 const authUserController = new AuthenticateUserController();
+const listUserReceiveComplimentsController =
+    new ListUserReceiveComplimentsController();
+const listUserSendComplimentsController =
+    new ListUserSendComplimentsController();
+const listTagsController = new ListTagsController();
+const listUsersController = new ListUsersController();
 
 router.post('/users', createUserController.handle);
+router.post('/login', authUserController.handle);
 router.post(
     '/tags',
     ensureAuthenticated,
@@ -25,6 +36,17 @@ router.post(
     ensureAuthenticated,
     createComplimentController.handle,
 );
-router.post('/login', authUserController.handle);
 
+router.get(
+    '/users/compliments/receive',
+    ensureAuthenticated,
+    listUserReceiveComplimentsController.handle,
+);
+router.get(
+    '/users/compliments/send',
+    ensureAuthenticated,
+    listUserSendComplimentsController.handle,
+);
+router.get('/tags', ensureAuthenticated, listTagsController.handle);
+router.get('/users', ensureAuthenticated, listUsersController.handle);
 export { router };
